@@ -5,7 +5,7 @@
   "main": "build/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "tsc-watch --onSuccess \"node ./build/index.js\"",
+    "start": "source ./config/stag.env; tsc-watch --onSuccess \"dazn aws exec -p dazn-ar-stage --pset power-user -- node -r 'global-agent/bootstrap' --enable-source-maps ./build/index.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,12 +13,23 @@
   "license": "ISC",
   "devDependencies": {
     "@types/express": "^4.17.21",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "global-agent": "^3.0.0"
   },
   "dependencies": {
+    "@dazn/gotcha-logging": "^0.6.0",
+    "@dazn/gotcha-useragent": "^0.6.0",
+    "@dazn/http-hmac": "^2.0.0",
+    "@dazn/http-hmac-got": "^2.0.0",
+    "@dazn/http-hmac-vault": "^3.0.0",
+    "@dazn/dazl": "^6.7.0",
+    "agentkeepalive": "^4.2.1",
+    "aws-sdk": "^2.1271.0",
     "axios": "^1.6.7",
     "express": "^4.18.2",
     "express-promise-router": "^4.1.1",
+    "http-errors": "^1.8.1",
+    "http-status-codes": "^1.4.0",
     "tsc-watch": "^6.0.4"
   }
 }
